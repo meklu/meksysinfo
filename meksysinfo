@@ -84,7 +84,10 @@ return
 fi
 printf ${FORMAT}
 }
+WMNAME="${XDG_CURRENT_DESKTOP}"
+if [ -z "${WMNAME}" ]; then
 WMNAME="$(_getxrootprop _NET_WM_NAME)"
+fi
 if [ -z "${WMNAME}" ]; then
 WMNAME="$(_getxrootprop WM_NAME)"
 fi
