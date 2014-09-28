@@ -51,7 +51,7 @@ CPUFREQUENCY="$(printf "%s\n" "scale=2;$(grep -m 1 "cpu MHz" /proc/cpuinfo | awk
 fi
 printf "%s\n%s\n" "        $(grep -c "^processor" /proc/cpuinfo | sed 's/\n//g') cores/threads" "        $CPUFREQUENCY MHz"
 printf "%s\n" "RAM:    $(printf "%s\n" "scale=2;$(grep "^MemTotal:" /proc/meminfo | awk '{print $2}')/1024^2" | bc -l) GiB"
-GPUINFO="$(glxinfo 2>/dev/null | sed -n 's/^OpenGL renderer string: //gp;s/^OpenGL version string: /        OpenGL /gp;s/^OpenGL shading language version string: /        GLSL /gp')"
+GPUINFO="$(glxinfo 2>/dev/null | sed -n 's/^OpenGL core profile version string: /        OpenGL\/core /gp;s/^OpenGL core profile shading language version string: /        GLSL\/core /gp;s/^OpenGL renderer string: //gp;s/^OpenGL version string: /        OpenGL /gp;s/^OpenGL shading language version string: /        GLSL /gp')"
 printf "%s" "GPU:    "
 if [ -n "${GPUINFO}" ]
 then
